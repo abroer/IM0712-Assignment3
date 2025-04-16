@@ -17,6 +17,13 @@
 % Attempt to make hyperref and algorithmic work together better:
 \newcommand{\theHalgorithm}{\arabic{algorithm}}
 
+% Define the subsubsubsection command
+\newcommand{\subsubsubsection}[1]{%
+  \paragraph{#1}\mbox{}\\}
+
+
+
+
 
 \usepackage[accepted]{icml2021}
 
@@ -69,12 +76,13 @@ Provide diagrams to help in the discussion. Figure \ref{fig:one-col-figure} and 
 
 \subsection{SVR and ANN - Reproduce the results}
 In order to compare the results of the article with our results, a visualization was made. Here the values of the article (\textbf{still to be added}) are compared with our results repeatedly. Our results are reproduced repeatedly with different test and training data each time. This way we are sure that it is not a lucky shot but we get a realistic picture of how our model performs.
+Also, standardization has been applied to the data features of the dataset, not to the quality column.
 
 \subsection{SVR and ANN - Impact of the features}
 TBC
 
 \subsection{SVR and ANN - Inprove the model}
-TBC
+For optimizing the hyperparameters, gridsearch and BayesSearch were used for SVR. For ANN, gridsearch was used to examine the impact of the hyperparameters.
 
 \begin{figure*}
     \centering
@@ -84,19 +92,27 @@ TBC
 \end{figure*}
 
 \section{Experimental Results}
+This chapter, experimental results, is split into 3 parts: A short general piece, a piece on SVR and a part on ANN
+
+\subsection{Datasets}
+When exploiting the data it was found that the information given in the article about the data did not match the information about the data. The article indicates that the red wine dataset was used. Based on the number of rows and other metadata (averages, Median, ...) we see that the white wine dataset was used. In the rest of this article we will work with the white wine dataset.
 
 \subsection{SVR}
 
 \subsubsection{Datasets}
-Include a description of the data used, what it contains, train test splits, etc.
-
-\textbf{Hier de bevinding schrijven dat het over de white wine ipv de red wine gaat.}
+The article indicates that the data is split into training data and testing data with a ratio of 3:1. This is also the ratio of the splits that was applied in further research.
 
 \subsubsection{Implementation Details}
-Include a description of the design choices, hyperparameters, and other implementation specific details.
 
+\subsubsubsection{Reproduce the results}
+The results of the article are simulated by using the parameters mentioned in the article. The following parameters are mentioned: kernel=rbf, 10-fold cross-validation, cost = 0.95 and Gamma = 0.13. For all other parameters, the default parameters of sklearn are chosen.
+How the training data is chosen is unknown, so the split between training and test data is performed multiple times. In this way, there is a realistic picture of the models that generate these parameters.
 
+\subsubsubsection{Impact of the features}
+tbc
 
+\subsubsubsection{Inprove the model}
+To optimize the model, the cost and gamma were examined. BayesSearch was used to find a model with the lowest possible mean squared error.
 
 
 \subsubsection{Results}
@@ -106,16 +122,15 @@ Include plots and visualizations such as Figure \ref{fig:one-col-figure}.
 \subsubsection{Discussion}
 Additionally, you can include a separate discussion section in which you summarize the results, indicate possible limitations of your work, and provide suggestions for future research.
 
-\subsubsection{Citing references}
+\subsection{Citing references}
 LaTeX manages the citations for you. You simply have to add the bibtex entry for the reference in the references.bib file and you can use the citation in the paper \cite{langley00}. You can also cite multiple references in one command \cite{DudaHart2nd,Newell81,kearns89}. The bibtex entries for a paper can be obtained in websites such as google scholar or dblp.
 
-\subsection{SVR}
+\subsection{ANN}
 
 \subsubsection{Datasets}
 
 
 \subsubsection{Implementation Details}
-
 
 
 \subsubsection{Results}
