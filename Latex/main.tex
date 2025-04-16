@@ -66,7 +66,7 @@ The research questions discussed in this report are:
 
 \section{Methods}
 Describe the methods used. How it works. It can include algorithms, system descriptions, new language constructs, analyses, etc.
-Provide diagrams to help in the discussion. Figure \ref{fig:one-col-figure} and Figure \ref{fig:two-col-figure} shows an example of a one-column figure and a two-column figure. 
+Provide diagrams to help in the discussion. Figure \ref{Reproduce-SVR-the-results} and Figure \ref{fig:two-col-figure} shows an example of a one-column figure and a two-column figure. 
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{figures/example_plot.png}
@@ -105,22 +105,55 @@ The article indicates that the data is split into training data and testing data
 \subsubsection{Implementation Details}
 
 \subsubsubsection{Reproduce the results}
-The results of the article are simulated by using the parameters mentioned in the article. The following parameters are mentioned: kernel=rbf, 10-fold cross-validation, cost = 0.95 and Gamma = 0.13. For all other parameters, the default parameters of sklearn are chosen.
+The results of the article are simulated by using the parameters mentioned in the article. The following parameters are mentioned: kernel=rbf, cost = 0.95 and Gamma = 0.13. For all other parameters, the default parameters of sklearn are chosen, except for the Tolerance for stopping criterion, which is set to 0.0001 to obtain the best possible result and because the cost is negligible given the small dataset.
 How the training data is chosen is unknown, so the split between training and test data is performed multiple times. In this way, there is a realistic picture of the models that generate these parameters.
 
 \subsubsubsection{Impact of the features}
 tbc
 
 \subsubsubsection{Inprove the model}
-To optimize the model, the cost and gamma were examined. BayesSearch was used to find a model with the lowest possible mean squared error.
-
+To optimize the model, the cost and gamma were examined. BayesSearch was used to find a model with the lowest possible mean squared error. 
 
 \subsubsection{Results}
-Analyze and discuss your results. Table \ref{tab:example-table} shows an example of a table.
-Include plots and visualizations such as Figure \ref{fig:one-col-figure}.
+
+\subsubsubsection{Reproduce the results}
+\begin{figure*}
+\centering
+\includegraphics[width=\linewidth]{figures/SVR_reproduce_the_results.png}
+\caption{Reproduce the results}
+\label{fig:Reproduce-SVR-the-results}
+\end{figure*}
+
+\subsubsubsection{Impact of the features}
+tbc
+
+
+\subsubsubsection{Inprove the model}
+
+In figure \ref{Reproduce-SVR-the-results}   the best possible values for gamma and cost are examined. The non-optimized model (the model with the parameters as indicated in the article) is visualized by a blue sphere.
+\begin{figure*}
+    \centering
+    \includegraphics[width=\linewidth]{figures/bayesian_optimization.png}
+    \caption{Bayesian search for optimal gamma en cost}
+    \label{fig:optimized-model}
+\end{figure*}
+
+The most optimal parameters are: cost=1.51 and gamma=0.558.
+In figure \ref{optimized-model} we see how the model performs compared to the values of the article model (dashed line) and compared to the non-optimized model (dotted line).
+\begin{figure*}
+	\centering
+	\includegraphics[width=\linewidth]{figures/SVR_optimized_model.png}
+	\caption{Bayesian search for optimal gamma en cost}
+	\label{fig:one-col-figure}
+\end{figure*}
+
 
 \subsubsection{Discussion}
-Additionally, you can include a separate discussion section in which you summarize the results, indicate possible limitations of your work, and provide suggestions for future research.
+%Additionally, you can include a separate discussion section in which you summarize the results, indicate possible limitations of your work, and provide suggestions for future research.
+
+
+The results of the article have been reproduced. The impact of the features has been investigated. And the model has been optimized. All this while the article does not seem reliable because of the incorrect naming of the data set (namely red wine instead of white wine)
+
 
 \subsection{Citing references}
 LaTeX manages the citations for you. You simply have to add the bibtex entry for the reference in the references.bib file and you can use the citation in the paper \cite{langley00}. You can also cite multiple references in one command \cite{DudaHart2nd,Newell81,kearns89}. The bibtex entries for a paper can be obtained in websites such as google scholar or dblp.
