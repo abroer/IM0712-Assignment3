@@ -84,12 +84,6 @@ TBC
 \subsection{SVR and ANN - Inprove the model}
 For optimizing the hyperparameters, gridsearch and BayesSearch were used for SVR. For ANN, gridsearch was used to examine the impact of the hyperparameters.
 
-\begin{figure*}
-    \centering
-    \includegraphics[width=\linewidth]{figures/example_pipeline.png}
-    \caption{One-column figure that explains the steps or framework of your method / model.}
-    \label{fig:two-col-figure}
-\end{figure*}
 
 \section{Experimental Results}
 This chapter, experimental results, is split into 3 parts: A short general piece, a piece on SVR and a part on ANN
@@ -130,7 +124,7 @@ tbc
 
 \subsubsubsection{Inprove the model}
 
-In figure \ref{Reproduce-SVR-the-results}   the best possible values for gamma and cost are examined. The non-optimized model (the model with the parameters as indicated in the article) is visualized by a blue sphere.
+In figure \ref{Reproduce-SVR-the-results} the best possible values for gamma and cost are examined. The non-optimized model (the model with the parameters as indicated in the article) is visualized by a blue sphere.
 \begin{figure*}
     \centering
     \includegraphics[width=\linewidth]{figures/bayesian_optimization.png}
@@ -161,15 +155,36 @@ LaTeX manages the citations for you. You simply have to add the bibtex entry for
 \subsection{ANN}
 
 \subsubsection{Datasets}
-
+In the article it is stated that the train-validation-test ratio is 60-20-20. We have also maintained this ratio for reproducing and optimizing the model.
 
 \subsubsection{Implementation Details}
 
+\subsubsubsection{Reproduce the results}
+The article mentions the following parameters: 1 input layer, 3 hidden layers (each with 15 neurons) and one output layer with the Adam optimizer.
+As activation function relu was chosen and the mean squared error as loss to optimize.
+How the training data is chosen is unknown, so the split between training and test data is performed multiple times. In this way, there is a realistic picture of the models that generate these parameters.
+
+\subsubsubsection{Impact of the features}
+tbc
+
+\subsubsubsection{Inprove the model}
+Due to time constraints, we will limit the number of tests. Gridsearch will be used to see if the model can be optimized by adjusting the number of neurons in the hidden layers.
+It was also considered to reduce the number of hidden layers to one. The reasoning behind this is that the data is not that complex and that the complexity of the three layers would be unnecessary. With one hidden layer, the impact of the number of neurons is also considered. And once an optimum has been found, the impact of batch size and epochs is also examined.
 
 \subsubsection{Results}
 
+\subsubsubsection{Reproduce the results}
+
+
+\subsubsubsection{Impact of the features}
+tbc
+
+\subsubsubsection{Inprove the model}
+
 
 \subsubsection{Discussion}
+
+
 
 
 \subsubsection{Citing references}
