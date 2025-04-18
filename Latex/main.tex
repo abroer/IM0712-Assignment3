@@ -79,7 +79,21 @@ In order to compare the results of the article with our results, a visualization
 Also, standardization has been applied to the data features of the dataset, not to the quality column.
 
 \subsection{SVR and ANN - Impact of the features}
-TBC
+The article analyses the impact of individual features on the quality of the wine.
+This analysis is done by looking at the correlation between the features and the quality of the wine.
+The correlation is calculated in the article using the Pearson correlation coefficient.
+The Pearson correlation coefficient is a measure of the linear correlation between two variables.
+
+By using SHAP (SHapley Additive exPlanations) values, the impact of the features on the model can be analyzed.
+The explanation of the model should reflect a similar result as compared to the pearson correlation coefficient.
+Shapley values are created by using the Shapley value method, which is a method from cooperative game theory.
+Effectively it will calculate the contribution of each feature to the model output by looking at the impact of each feature on the model output.
+\cite{lundberg2017unified} describes in detail how the impact of individual features is determined by retraining the model with this a feature excluded.
+Then the impact of the feature on the model output is calculated by looking at the difference between the model output with and without the feature.
+Diagrams used to explain the impact of features are the dependency plot and the force plot.
+The dependency plot shows the impact of a feature on the model output.
+The force plot shows the impact of all features on the model output.
+The force plot is a more complex diagram that shows the impact of all features on the model output.
 
 \subsection{SVR and ANN - Inprove the model}
 For optimizing the hyperparameters, gridsearch and BayesSearch were used for SVR. For ANN, gridsearch was used to examine the impact of the hyperparameters.
@@ -103,9 +117,37 @@ The results of the article are simulated by using the parameters mentioned in th
 How the training data is chosen is unknown, so the split between training and test data is performed multiple times. In this way, there is a realistic picture of the models that generate these parameters.
 
 \subsubsubsection{Impact of the features}
-tbc
+In figure \autoref{fig:dependency-plot-svr} \nameref{fig:dependency-plot-svr} the impact of the features is visualized.
+The dependency plot shows the impact of each feature on the model output.
+The color of the dots indicates the value of the feature, with red indicating a high value and blue indicating a low value.
+The y-axis shows the impact of the feature on the model output.
 
-\subsubsubsection{Inprove the model}
+The plot for alcohol shows that the impact of alcohol on the model output is positive.
+This means that a higher value of alcohol leads to a higher quality of wine.
+The trend of the values is clearly visible in the plot, showing a positive correlation between the feature and the model output.
+This is also confirmed by the Pearson correlation coefficient, which shows a positive correlation between alcohol and quality.
+
+The plot for density show that the impact of density on the model output is negative.
+This means that a higher value of density leads to a lower quality of wine.
+just as with alcohol, the trend of the values is clearly visible in the plot, showing a strong negative correlation between the feature and the model output.
+
+The plot for chlorides shows that the impact of chlorides on the model output is also negative. Again this corresponds with the Pearson correlation coefficient, which shows a negative correlation between chlorides and quality.
+
+THe feature with the least impact on the model output is Free sulfur dioxide.
+The plot shows that the impact of Free sulfur dioxide on the model output is positive.
+This means that a higher value of Free sulfur dioxide leads to a higher quality of wine.
+However, the trend of the values is not clearly visible in the plot, showing a weak correlation between the feature and the model output.
+This is also confirmed by the Pearson correlation coefficient, which shows a weak positive correlation between Free sulfur dioxide and quality.
+Notable is that Free sulfur dioxide has a strong positive trend for the lower values. This suggests that the feature has a minumum value for the quality of wine.
+This was not visible in the pearson correlation coefficient because the correlation coefficient is calculated over the entire dataset.
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=\linewidth]{figures/shap-dependency-svr.png}
+    \caption{Dependency plot of the features for SVR}
+    \label{fig:dependency-plot-svr}
+\end{figure*}
+\subsubsubsection{Improve the model}
 To optimize the model, the cost and gamma were examined. BayesSearch was used to find a model with the lowest possible mean squared error. 
 
 \subsubsection{Results}
