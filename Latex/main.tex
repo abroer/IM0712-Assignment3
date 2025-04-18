@@ -79,7 +79,21 @@ In order to compare the results of the article with our results, a visualization
 Also, standardization has been applied to the data features of the dataset, not to the quality column.
 
 \subsection{SVR and ANN - Impact of the features}
-TBC
+The article analyses the impact of individual features on the quality of the wine.
+This analysis is done by looking at the correlation between the features and the quality of the wine.
+The correlation is calculated in the article using the Pearson correlation coefficient.
+The Pearson correlation coefficient is a measure of the linear correlation between two variables.
+
+By using SHAP (SHapley Additive exPlanations) values, the impact of the features on the model can be analyzed.
+The explanation of the model should reflect a similar result as compared to the pearson correlation coefficient.
+Shapley values are created by using the Shapley value method, which is a method from cooperative game theory.
+Effectively it will calculate the contribution of each feature to the model output by looking at the impact of each feature on the model output.
+\cite{lundberg2017unified} describes in detail how the impact of individual features is determined by retraining the model with this a feature excluded.
+Then the impact of the feature on the model output is calculated by looking at the difference between the model output with and without the feature.
+Diagrams used to explain the impact of features are the dependency plot and the force plot.
+The dependency plot shows the impact of a feature on the model output.
+The force plot shows the impact of all features on the model output.
+The force plot is a more complex diagram that shows the impact of all features on the model output.
 
 \subsection{SVR and ANN - Inprove the model}
 For optimizing the hyperparameters, gridsearch and BayesSearch were used for SVR. For ANN, gridsearch was used to examine the impact of the hyperparameters.
