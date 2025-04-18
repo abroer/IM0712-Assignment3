@@ -174,12 +174,48 @@ It was also considered to reduce the number of hidden layers to one. The reasoni
 \subsubsection{Results}
 
 \subsubsubsection{Reproduce the results}
+%%%%Nog verder aan te vullen met results%%%%
 
 
 \subsubsubsection{Impact of the features}
 tbc
 
 \subsubsubsection{Inprove the model}
+Based on figure \ref{ANN-impact-neurons-3layers} it can be concluded that the model with 15 neurons for each layer is quite well chosen. Increasing the number of neurons will certainly not give better results.
+With one neuron the story is different, see figure \ref{ANN-impact-neurons-1layer}. The model improves as the number of neurons increases with a flattening starting around 70 neurons. With these 70 neurons the impact of batch size and epochs was investigated with the aim of finding a better model.
+As expected we see that we get better models at higher epochs and smaller batch sizes. For the final model epochs = 40 and batch size = 16 were chosen.
+
+%%%%Nog verder aan te vullen met results%%%%
+
+
+\begin{figure*}
+	\centering
+	\includegraphics[width=\linewidth]{figures/ANN_impact_neurons_3layers.png}
+	\caption{ANN impact neurons 3layers}
+	\label{fig:ANN-impact-neurons-3layers}
+\end{figure*}
+
+\begin{figure*}
+	\centering
+	\includegraphics[width=\linewidth]{figures/ANN_impact_neurons_1layer.png}
+	\caption{ANN impact neurons 1layer}
+	\label{fig:ANN-impact-neurons-1layer}
+\end{figure*}
+
+\begin{figure*}
+	\centering
+	\includegraphics[width=\linewidth]{figures/ANN_impact_epochs_1layer.png}
+	\caption{ANN impact epochs 1layer}
+	\label{fig:ANN-impact-epochs-1layer}
+\end{figure*}
+
+\begin{figure*}
+	\centering
+	\includegraphics[width=\linewidth]{figures/ANN_impact_batchsize_1layer.png}
+	\caption{ANN impact batch size 1layer}
+	\label{fig:ANN-impact-batchsize-1layer}
+\end{figure*}
+
 
 
 \subsubsection{Discussion}
