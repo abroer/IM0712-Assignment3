@@ -228,7 +228,14 @@ As activation function relu was chosen and the mean squared error as loss to opt
 How the training data is chosen is unknown, so the split between training and test data is performed multiple times. In this way, there is a realistic picture of the models that generate these parameters.
 
 \subsubsubsection{Impact of the features}
-tbc
+The analysis of the impact of the feature is done in the same way as with the SVR model.
+We need to be able to compare the results of the feature impact analysis, so we will use the same KernelExplainer as with the SVR model.
+The KernelExplainer is a model-agnostic explainer that can be used to explain the output of any machine learning model.
+In contrast the DeepExplainer is a model-specific explainer that can be used to explain the output of a deep learning model.
+The performance of the DeepExplainer is far better compared to the KernelExplainer and seems to have a similar output as the KernelExplainer.
+Still we prioritize the KernelExplainer because it is model-agnostic and as such eliminates differences in result due to different Explainer implementations.
+
+
 
 \subsubsubsection{Inprove the model}
 Due to time constraints, we will limit the number of tests. Gridsearch will be used to see if the model can be optimized by adjusting the number of neurons in the hidden layers.
