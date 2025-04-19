@@ -53,8 +53,8 @@
 \section{Brief Introduction}
 The assignment is based on the article \cite{dahal2021prediction} and focuses on the reproduction of the article results.
 The reproduct is limited to only the Support Vector Regression (SVR) and Artificial Neural Network (ANN) models.
-The Ridge Regression (RR) and Gradient Boosting Regression models are not included in this report.
-The goal of the assignment is to predict the quality of wine based on its chemical properties and understand the methods used to generate the predictions.
+The Ridge Regression (RR) and Gradient Boosting Regression models are not discussed in this report.
+The goal of the assignment is to predict the quality of wine based on its physical and chemical properties and understand the methods used to generate the predictions.
 The dataset will be analyzed to find the features that most influence the quality of wine and suggestions are provided to improve the hyperparameters of the model for best results.
 
 The research questions discussed in this report are:
@@ -68,11 +68,11 @@ The research questions discussed in this report are:
 The methods used for this assignment are based on the article \cite{dahal2021prediction} and include Support Vector Regression (SVR) and Artificial Neural Network (ANN) models.
 The impact of the features is analyzed using SHAP (SHapley Additive exPlanations) values and the Pearson correlation coefficient. Improvements on the both the SVR and ANN models are investigated and reported.
 
-\subsection{SVR and ANN - Reproduce the results}
-In order to compare the results of the article with our results, a visualization was made. Here the values of the article (\textbf{still to be added}) are compared with our results repeatedly. Our results are reproduced repeatedly with different test and training data each time. This way we are sure that it is not a lucky shot but we get a realistic picture of how our model performs.
-Also, standardization has been applied to the data features of the dataset, not to the quality column.
+\subsection{Reproduce the results}
+In order to compare the results of the article with our results, a visualization was made. Here the values of the article \cite{dahal2021prediction} are compared with our results repeatedly. Our results are reproduced repeatedly with different test and training data each time. This way we are sure that it is not a lucky shot but we get a realistic picture of how our models perform.
+Also, standardization has been applied to the data features of the dataset so not to the quality column.
 
-\subsection{SVR and ANN - Impact of the features}
+\subsection{Impact of the features}
 The article analyses the impact of individual features on the quality of the wine.
 This analysis is done by looking at the correlation between the features and the quality of the wine.
 The correlation is calculated in the article using the Pearson correlation coefficient.
@@ -80,17 +80,17 @@ The Pearson correlation coefficient is a measure of the linear correlation betwe
 
 By using SHAP (SHapley Additive exPlanations) values, the impact of the features on the model can be analyzed.
 The explanation of the model should reflect a similar result as compared to the pearson correlation coefficient.
-Shapley values are created by using the Shapley value method, which is a method from cooperative game theory.
-Effectively it will calculate the contribution of each feature to the model output by looking at the impact of each feature on the model output.
+Shapley values are created by using the Shapley value method, which is a method from cooperative game theory. Effectively it will calculate the contribution of each feature to the model output by looking at the impact of each feature on the model output.
 \cite{lundberg2017unified} describes in detail how the impact of individual features is determined by retraining the model with this a feature excluded.
 Then the impact of the feature on the model output is calculated by looking at the difference between the model output with and without the feature.
 Diagrams used to explain the impact of features are the dependency plot and the force plot.
+%naar de volgende 3 zinnen moet je nog eens kijken.
 The dependency plot shows the impact of a feature on the model output.
 The force plot shows the impact of all features on the model output.
 The force plot is a more complex diagram that shows the impact of all features on the model output.
 
-\subsection{SVR and ANN - Improve the model}
-For optimizing the hyperparameters, gridsearch and BayesSearch were used for SVR. For ANN, gridsearch was used to examine the impact of the hyperparameters.
+\subsection{Improve the model}
+For optimizing the hyperparameters, BayesSearch is used for SVR. For ANN, gridsearch was used to examine the impact of the hyperparameters.
 
 
 \section{Experimental Results}
@@ -128,27 +128,31 @@ Both the force plot and the dependency plot are used to visualize the impact of 
 These plots are both generated using the same SHAP values calculated for the test samples.
 
 \subsubsubsection{Improve the model}
-To optimize the model, the cost and gamma were examined. BayesSearch was used to find a model with the lowest possible mean squared error.
+To optimize the model, the cost and gamma were examined. BayesSearch was used to find a model with the lowest possible mean squared error. The result is visualized in a scatter plot where green points indicate a good model and red points indicate a less good model.
+The new parameters will be used to train a model 100 times. Each time with different train and test data, but the ratio (3:1) will be maintained. These 100 trained models will be visually compared with the article \cite{dahal2021prediction} model.
 
 \subsubsection{Results}
 
 \subsubsubsection{Reproduce the results}
-\begin{figure*}
+
+The results are visualized in figure \ref{fig:Reproduce-SVR-the-results}. The important part is how the results are compared to the test data. The correlation and the MAPE give better results than the article \cite{dahal2021prediction}. While the MSE of the reproduced model are slightly worse.
+
+\begin{figure}
 \centering
 \includegraphics[width=\linewidth]{figures/SVR_reproduce_the_results.png}
-\caption{Reproduce the results}
+\caption{Reproduce the SVR results}
 \label{fig:Reproduce-SVR-the-results}
-\end{figure*}
+\end{figure}
 
 \subsubsubsection{Impact of the features}
 In figure \autoref{fig:dependency-plot-svr} \nameref{fig:dependency-plot-svr} the impact of the features is visualized.
 The dependency plot shows the impact of each feature on the model output.
-The color of the dots indicates the value of the feature, with red indicating a high value and blue indicating a low value.
+The color of the dots indicates the value \textbf{(=impact?)} of the feature, with red indicating a high value and blue indicating a low value.
 The y-axis shows the impact of the feature on the model output.
 
 The plot for alcohol shows that the impact of alcohol on the model output is positive.
 This means that a higher value of alcohol leads to a higher quality of wine.
-The trend of the values is clearly visible in the plot, showing a positive correlation between the feature and the model output.
+The trend of the values is clearly visible in the plot, showing a positive correlation between the feature and the model output. %naam plot toevoegen
 This is also confirmed by the Pearson correlation coefficient, which shows a positive correlation between alcohol and quality.
 
 The plot for density show that the impact of density on the model output is negative.
@@ -157,52 +161,54 @@ just as with alcohol, the trend of the values is clearly visible in the plot, sh
 
 The plot for chlorides shows that the impact of chlorides on the model output is also negative. Again this corresponds with the Pearson correlation coefficient, which shows a negative correlation between chlorides and quality.
 
-THe feature with the least impact on the model output is Free sulfur dioxide.
+The feature with the least impact on the model output is Free sulfur dioxide.
 The plot shows that the impact of Free sulfur dioxide on the model output is positive.
 This means that a higher value of Free sulfur dioxide leads to a higher quality of wine.
 However, the trend of the values is not clearly visible in the plot, showing a weak correlation between the feature and the model output.
 This is also confirmed by the Pearson correlation coefficient, which shows a weak positive correlation between Free sulfur dioxide and quality.
-Notable is that Free sulfur dioxide has a strong positive trend for the lower values. This suggests that the feature has a minumum value for the quality of wine.
+Notable is that Free sulfur dioxide has a strong positive trend for the lower values. This suggests that the feature has a minimum value for the quality of wine.
 This was not visible in the pearson correlation coefficient because the correlation coefficient is calculated over the entire dataset.
 
-\begin{figure*}
+\begin{figure}
     \centering
     \includegraphics[width=\linewidth]{figures/shap-dependency-svr.png}
     \caption{Dependency plot of the features for SVR}
     \label{fig:dependency-plot-svr}
-\end{figure*}
+\end{figure}
 
 The force plot in \autoref{fig:force-plot-svr} \nameref{fig:force-plot-svr} shows the impact of all features on the model output for all samples.
 This diagram is harder to read but shows the same data as in the dependency plots.
 Again this shows that the alcohol feature has the most positive impact on the model output.
-For detailed understanding of the features impact the dependency plot is preferred.
-For a coarse grained undestanding of the features impact the force plot is preferred.
+For detailed understanding of the features impact the dependency plot is preferred. For a coarse grained understanding of the features impact the force plot is preferred.
 
-\begin{figure*}
+\begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{figures/shap_force_plot_svr.png}
 	\caption{Force plot of the features for SVR}
 	\label{fig:force-plot-svr}
-\end{figure*}
+\end{figure}
 
 \subsubsubsection{Inprove the model}
 
-In figure \ref{Reproduce-SVR-the-results} the best possible values for gamma and cost are examined. The non-optimized model (the model with the parameters as indicated in the article) is visualized by a blue sphere.
-\begin{figure*}
+In \autoref{fig:Bayesian-search-for-optimal-gamma-and-cost} the best possible values for gamma and cost are examined. The non-optimized model (the model with the parameters as indicated in the article \cite{dahal2021prediction} ) is visualized by a blue sphere.
+\begin{figure}
     \centering
     \includegraphics[width=\linewidth]{figures/bayesian_optimization.png}
     \caption{Bayesian search for optimal gamma en cost}
-    \label{fig:optimized-model}
-\end{figure*}
+    \label{fig:Bayesian-search-for-optimal-gamma-and-cost}
+\end{figure}
 
 The most optimal parameters are: cost=1.51 and gamma=0.558.
-In figure \ref{optimized-model} we see how the model performs compared to the values of the article model (dashed line) and compared to the non-optimized model (dotted line).
-\begin{figure*}
+In figure \ref{fig:optimized-SVR-model} we see how the model performs compared to the values of the model of the article \cite{dahal2021prediction} (dashed line) and compared to the non-optimized model (dotted line). 
+Based on the three evaluation criteria (correlation, RMSE and MAPE) the model consistently outperforms the non-optimized model. The parameters perform significantly better based on the training data suggesting overfitting, but the results from the testing data are also (slightly) better indicating no overfitting.
+\begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{figures/SVR_optimized_model.png}
-	\caption{Bayesian search for optimal gamma en cost}
-	\label{fig:one-col-figure}
-\end{figure*}
+	\caption{Optimized SVR model}
+	\label{fig:optimized-SVR-model}
+\end{figure}
+
+
 
 
 \subsubsection{Discussion}
@@ -213,7 +219,7 @@ The results of the article have been reproduced. The impact of the features has 
 
 
 \subsection{Citing references}
-LaTeX manages the citations for you. You simply have to add the bibtex entry for the reference in the references.bib file and you can use the citation in the paper \cite{langley00}. You can also cite multiple references in one command \cite{DudaHart2nd,Newell81,kearns89}. The bibtex entries for a paper can be obtained in websites such as google scholar or dblp.
+%%%LaTeX manages the citations for you. You simply have to add the bibtex entry for the reference in the references.bib file and you can use the citation in the paper \cite{langley00}. You can also cite multiple references in one command \cite{DudaHart2nd,Newell81,kearns89}. The bibtex entries for a paper can be obtained in websites such as google scholar or dblp.
 
 \subsection{ANN}
 
@@ -243,24 +249,29 @@ The R values are very similar. The MSE results are worse than those of the model
 The combination of a higher MSE and a lower MAPE may indicate that most forecasts are accurate, but there are some exceptions with large errors that increase the MSE.
 This must be put into perspective, because we are talking about very small differences compared to the original model. If we know that the quality has no significant figures, the differences compared to the original model are negligible.
 
+\begin{figure*}
+	\centering
+	\includegraphics[width=\linewidth]{figures/ANN_reproduce_the_results.png}
+	\caption{ANN: reproduce the results}
+	\label{fig:ANN-reproduce-the-results}
+\end{figure*}
+
 
 \subsubsubsection{Impact of the features}
 tbc
 
 \subsubsubsection{Inprove the model}
 Based on figure \ref{ANN-impact-neurons-3layers} it can be concluded that the model with 15 neurons for each layer is quite well chosen. Increasing the number of neurons will certainly not give better results.
-With one neuron the story is different, see figure \ref{ANN-impact-neurons-1layer}. The model improves as the number of neurons increases with a flattening starting around 70 neurons. With these 70 neurons the impact of batch size and epochs was investigated with the aim of finding a better model.
-As expected we see that we get better models at higher epochs and smaller batch sizes. For the final model epochs = 40 and batch size = 16 were chosen.
 
-Figure \ref{fig:ANN-optimized-model} shows the model from the article with a red dashed line and the reproduced model with an orange dotted line. The blue bars show an optimized model with one layer (with 70 neurons). Both the R values, MSE and MAPE give better results than the reproduced model. This improvement is only minimal.
-
-
-\begin{figure*}
+\begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{figures/ANN_impact_neurons_3layers.png}
 	\caption{ANN impact neurons 3layers}
 	\label{fig:ANN-impact-neurons-3layers}
-\end{figure*}
+\end{figure}
+
+With one neuron the story is different, see figure \ref{ANN-impact-neurons-1layer}. The model improves as the number of neurons increases with a flattening starting around 70 neurons. With these 70 neurons the impact of batch size and epochs was investigated with the aim of finding a better model.
+As expected we see that we get better models at higher epochs and smaller batch sizes. For the final model epochs = 40 and batch size = 16 were chosen.
 
 \begin{figure*}
 	\centering
@@ -276,6 +287,8 @@ Figure \ref{fig:ANN-optimized-model} shows the model from the article with a red
 	\label{fig:ANN-impact-epochs-1layer}
 \end{figure*}
 
+Figure \ref{fig:ANN-optimized-model} shows the model from the article with a red dashed line and the reproduced model with an orange dotted line. The blue bars show an optimized model with one layer (with 70 neurons). Both the R values, MSE and MAPE give better results than the reproduced model. This improvement is only minimal.
+
 \begin{figure*}
 	\centering
 	\includegraphics[width=\linewidth]{figures/ANN_impact_batchsize_1layer.png}
@@ -283,12 +296,6 @@ Figure \ref{fig:ANN-optimized-model} shows the model from the article with a red
 	\label{fig:ANN-impact-batchsize-1layer}
 \end{figure*}
 
-\begin{figure*}
-	\centering
-	\includegraphics[width=\linewidth]{figures/ANN_reproduce_the_results.png}
-	\caption{ANN: reproduce the results}
-	\label{fig:ANN-reproduce-the-results}
-\end{figure*}
 
 \begin{figure*}
 	\centering
