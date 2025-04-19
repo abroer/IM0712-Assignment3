@@ -78,20 +78,18 @@ This analysis is done by looking at the correlation between the features and the
 The correlation is calculated in the article using the Pearson correlation coefficient.
 The Pearson correlation coefficient is a measure of the linear correlation between two variables.
 
-By using SHAP (SHapley Additive exPlanations) values, the impact of the features on the model can be analyzed.
+By using SHAP (SHapley Additive exPlanations) values, the impact of the features on the model can be analyzed in more detail.
 The explanation of the model should reflect a similar result as compared to the pearson correlation coefficient.
 Shapley values are created by using the Shapley value method, which is a method from cooperative game theory.
 Effectively it will calculate the contribution of each feature to the model output by looking at the impact of each feature on the model output.
 \cite{lundberg2017unified} describes in detail how the impact of individual features is determined by retraining the model with this a feature excluded.
 Then the impact of the feature on the model output is calculated by looking at the difference between the model output with and without the feature.
-Diagrams used to explain the impact of features are the dependency plot and the force plot.
-The dependency plot shows the impact of a feature on the model output.
-The force plot shows the impact of all features on the model output.
-The force plot is a more complex diagram that shows the impact of all features on the model output.
+Diagrams used here to explain the impact of features are the summary plot and dependency plot.
+The summary plot shows the impact of all features on the model output ordered from strongest impact to weaker impact.
+The dependency plot shows the impact of a single feature on the model output.
 
 \subsection{SVR and ANN - Improve the model}
 For optimizing the hyperparameters, gridsearch and BayesSearch were used for SVR. For ANN, gridsearch was used to examine the impact of the hyperparameters.
-
 
 \section{Experimental Results}
 This chapter, experimental results, is split into 3 parts: A short general piece, a piece on SVR and a part on ANN
@@ -111,20 +109,21 @@ The results of the article are simulated by using the parameters mentioned in th
 How the training data is chosen is unknown, so the split between training and test data is performed multiple times. In this way, there is a realistic picture of the models that generate these parameters.
 
 \subsubsubsection{Impact of the features}
-The model used for analyzing the impact of features is the same as the model used for reproducing the results.
+The trained model used for analyzing the impact of features is the same as the model used for reproducing the results.
 When reproducing the results it was shown that the selection of a train and test set has an impact of on the model performance.
 The training set split used for the feature analysis results from applying {\texttt{random\_state=1}}.
 
-For the shap exlainer the KernelExplainer was used. The KernelExplainer is a model-agnostic explainer that can be used to explain the output of any machine learning model.
-As background data a random sample of 100 rows from the training data was used.
+For the shap explainer the KernelExplainer was used.
+The KernelExplainer is a model-agnostic explainer that can be used to explain the output of any machine learning model.
+As background data a random sample of 200 rows from the training data was used.
 The KernelExplainer uses the background data to estimate the expected value of the model output.
 The KernelExplainer is a computationally expensive method, so a smaller sample size is used for the background data.
-Then a random sample of 20 rows as test data has been taken from the test data to explain the model output.
-The SHAP values are calculated for these 20 test samples.
-For higher accuricy both the background data and test samples can be increased, but this will increase the computation time.
+Then a random sample of 50 rows as test data has been taken from the test data to explain the model output.
+The SHAP values are calculated for these 50 test samples.
+For higher accuracy both the background data and test samples can be increased, but this will increase the computation time.
 Having only a home laptop available, the sample size is kept small to keep the computation time reasonable.
 
-Both the force plot and the dependency plot are used to visualize the impact of the features on the model output.
+Both the summary plot and the dependency plot are used to visualize the impact of the features on the model output.
 These plots are both generated using the same SHAP values calculated for the test samples.
 
 \subsubsubsection{Improve the model}
@@ -141,7 +140,16 @@ To optimize the model, the cost and gamma were examined. BayesSearch was used to
 \end{figure*}
 
 \subsubsubsection{Impact of the features}
-In figure \autoref{fig:dependency-plot-svr} \nameref{fig:dependency-plot-svr} the impact of the features is visualized.
+In figure \autoref{fig:summary-plot-svr} \nameref{fig:summary-plot-svr} the impact of all features is visualized.
+From this diagram it is clear that Alcohol has the most positive impact on the model output.
+The blue values indicate a low value of the feature and the red values indicate a high value of the feature.
+The impact on the model output is shown on the x-axis. For alcohol the blue values are on the left side of the plot and the red values are on the right side of the plot, meaning the impact is positive.
+Residual sugar has a same positive impact on the model output, but the impact is slightly smaller than for alcohol.
+density and volatile acidity have a negative impact on the model output. The blue values are on the right side of the plot and the red values are on the left side of the plot, meaning the impact is negative.
+The features with a very weak correlation to the output are: chlorides, free sulfur dioxide and total sulfur dioxide. The impact of these features is very small compared to the other features.
+The SHAP values for those features are more chaotic and do not show a clear trend.
+
+In figure \autoref{fig:dependency-plot-svr} \nameref{fig:dependency-plot-svr} the impact of the individual features are visualized.
 The dependency plot shows the impact of each feature on the model output.
 The color of the dots indicates the value of the feature, with red indicating a high value and blue indicating a low value.
 The y-axis shows the impact of the feature on the model output.
@@ -164,6 +172,13 @@ However, the trend of the values is not clearly visible in the plot, showing a w
 This is also confirmed by the Pearson correlation coefficient, which shows a weak positive correlation between Free sulfur dioxide and quality.
 Notable is that Free sulfur dioxide has a strong positive trend for the lower values. This suggests that the feature has a minumum value for the quality of wine.
 This was not visible in the pearson correlation coefficient because the correlation coefficient is calculated over the entire dataset.
+
+\begin{figure*}
+	\centering
+	\includegraphics[width=\linewidth]{figures/shap_summary_plot_svr.png}
+	\caption{Summary plot of the features for SVR}
+	\label{fig:summary-plot-svr}
+\end{figure*}
 
 \begin{figure*}
     \centering
