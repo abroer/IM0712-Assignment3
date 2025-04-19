@@ -111,6 +111,36 @@ The results of the article are simulated by using the parameters mentioned in th
 How the training data is chosen is unknown, so the split between training and test data is performed multiple times. In this way, there is a realistic picture of the models that generate these parameters.
 
 \subsubsubsection{Impact of the features}
+The model used for analyzing the impact of features is the same as the model used for reproducing the results.
+When reproducing the results it was shown that the selection of a train and test set has an impact of on the model performance.
+The training set split used for the feature analysis results from applying {\texttt{random\_state=1}}.
+
+For the shap exlainer the KernelExplainer was used. The KernelExplainer is a model-agnostic explainer that can be used to explain the output of any machine learning model.
+As background data a random sample of 100 rows from the training data was used.
+The KernelExplainer uses the background data to estimate the expected value of the model output.
+The KernelExplainer is a computationally expensive method, so a smaller sample size is used for the background data.
+Then a random sample of 20 rows as test data has been taken from the test data to explain the model output.
+The SHAP values are calculated for these 20 test samples.
+For higher accuricy both the background data and test samples can be increased, but this will increase the computation time.
+Having only a home laptop available, the sample size is kept small to keep the computation time reasonable.
+
+Both the force plot and the dependency plot are used to visualize the impact of the features on the model output.
+These plots are both generated using the same SHAP values calculated for the test samples.
+
+\subsubsubsection{Improve the model}
+To optimize the model, the cost and gamma were examined. BayesSearch was used to find a model with the lowest possible mean squared error.
+
+\subsubsection{Results}
+
+\subsubsubsection{Reproduce the results}
+\begin{figure*}
+\centering
+\includegraphics[width=\linewidth]{figures/SVR_reproduce_the_results.png}
+\caption{Reproduce the results}
+\label{fig:Reproduce-SVR-the-results}
+\end{figure*}
+
+\subsubsubsection{Impact of the features}
 In figure \autoref{fig:dependency-plot-svr} \nameref{fig:dependency-plot-svr} the impact of the features is visualized.
 The dependency plot shows the impact of each feature on the model output.
 The color of the dots indicates the value of the feature, with red indicating a high value and blue indicating a low value.
@@ -141,22 +171,19 @@ This was not visible in the pearson correlation coefficient because the correlat
     \caption{Dependency plot of the features for SVR}
     \label{fig:dependency-plot-svr}
 \end{figure*}
-\subsubsubsection{Improve the model}
-To optimize the model, the cost and gamma were examined. BayesSearch was used to find a model with the lowest possible mean squared error. 
 
-\subsubsection{Results}
+The force plot in \autoref{fig:force-plot-svr} \nameref{fig:force-plot-svr} shows the impact of all features on the model output for all samples.
+This diagram is harder to read but shows the same data as in the dependency plots.
+Again this shows that the alcohol feature has the most positive impact on the model output.
+For detailed understanding of the features impact the dependency plot is preferred.
+For a coarse grained undestanding of the features impact the force plot is preferred.
 
-\subsubsubsection{Reproduce the results}
 \begin{figure*}
-\centering
-\includegraphics[width=\linewidth]{figures/SVR_reproduce_the_results.png}
-\caption{Reproduce the results}
-\label{fig:Reproduce-SVR-the-results}
+	\centering
+	\includegraphics[width=\linewidth]{figures/shap_force_plot_svr.png}
+	\caption{Force plot of the features for SVR}
+	\label{fig:force-plot-svr}
 \end{figure*}
-
-\subsubsubsection{Impact of the features}
-tbc
-
 
 \subsubsubsection{Inprove the model}
 
