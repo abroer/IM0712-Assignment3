@@ -65,14 +65,8 @@ The research questions discussed in this report are:
 \end{enumerate}
 
 \section{Methods}
-Describe the methods used. How it works. It can include algorithms, system descriptions, new language constructs, analyses, etc.
-Provide diagrams to help in the discussion. Figure \ref{Reproduce-SVR-the-results} and Figure \ref{fig:two-col-figure} shows an example of a one-column figure and a two-column figure. 
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{figures/example_plot.png}
-    \caption{One-column figure that explains the steps or framework of your method / model.}
-    \label{fig:one-col-figure}
-\end{figure}
+The methods used for this assignment are based on the article \cite{dahal2021prediction} and include Support Vector Regression (SVR) and Artificial Neural Network (ANN) models.
+The impact of the features is analyzed using SHAP (SHapley Additive exPlanations) values and the Pearson correlation coefficient. Improvements on the both the SVR and ANN models are investigated and reported.
 
 \subsection{SVR and ANN - Reproduce the results}
 In order to compare the results of the article with our results, a visualization was made. Here the values of the article (\textbf{still to be added}) are compared with our results repeatedly. Our results are reproduced repeatedly with different test and training data each time. This way we are sure that it is not a lucky shot but we get a realistic picture of how our model performs.
@@ -95,7 +89,7 @@ The dependency plot shows the impact of a feature on the model output.
 The force plot shows the impact of all features on the model output.
 The force plot is a more complex diagram that shows the impact of all features on the model output.
 
-\subsection{SVR and ANN - Inprove the model}
+\subsection{SVR and ANN - Improve the model}
 For optimizing the hyperparameters, gridsearch and BayesSearch were used for SVR. For ANN, gridsearch was used to examine the impact of the hyperparameters.
 
 
