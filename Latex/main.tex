@@ -210,7 +210,11 @@ It was also considered to reduce the number of hidden layers to one. The reasoni
 \subsubsection{Results}
 
 \subsubsubsection{Reproduce the results}
-%%%%Nog verder aan te vullen met results%%%%
+
+In figure \ref{fig:ANN-reproduce-the-results} the original model is indicated by a red dashed line. With the chosen parameters 100 models were trained and shown as blue bar charts. The average of the bar charts is shown by an orange dotted line.
+The R values are very similar. The MSE results are worse than those of the model from the article while the MAPE results are better than those from the article.
+The combination of a higher MSE and a lower MAPE may indicate that most forecasts are accurate, but there are some exceptions with large errors that increase the MSE.
+This must be put into perspective, because we are talking about very small differences compared to the original model. If we know that the quality has no significant figures, the differences compared to the original model are negligible.
 
 
 \subsubsubsection{Impact of the features}
@@ -221,7 +225,7 @@ Based on figure \ref{ANN-impact-neurons-3layers} it can be concluded that the mo
 With one neuron the story is different, see figure \ref{ANN-impact-neurons-1layer}. The model improves as the number of neurons increases with a flattening starting around 70 neurons. With these 70 neurons the impact of batch size and epochs was investigated with the aim of finding a better model.
 As expected we see that we get better models at higher epochs and smaller batch sizes. For the final model epochs = 40 and batch size = 16 were chosen.
 
-%%%%Nog verder aan te vullen met results%%%%
+Figure \ref{fig:ANN-optimized-model} shows the model from the article with a red dashed line and the reproduced model with an orange dotted line. The blue bars show an optimized model with one layer (with 70 neurons). Both the R values, MSE and MAPE give better results than the reproduced model. This improvement is only minimal.
 
 
 \begin{figure*}
@@ -251,6 +255,21 @@ As expected we see that we get better models at higher epochs and smaller batch 
 	\caption{ANN impact batch size 1layer}
 	\label{fig:ANN-impact-batchsize-1layer}
 \end{figure*}
+
+\begin{figure*}
+	\centering
+	\includegraphics[width=\linewidth]{figures/ANN_reproduce_the_results.png}
+	\caption{ANN: reproduce the results}
+	\label{fig:ANN-reproduce-the-results}
+\end{figure*}
+
+\begin{figure*}
+	\centering
+	\includegraphics[width=\linewidth]{figures/ANN_optimized_model.png}
+	\caption{ANN optimized model}
+	\label{fig:ANN-optimized-model}
+\end{figure*}
+
 
 
 
