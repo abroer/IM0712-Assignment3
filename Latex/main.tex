@@ -176,19 +176,19 @@ This is also confirmed by the Pearson correlation coefficient, which shows a wea
 Notable is that Free sulfur dioxide has a strong positive trend for the lower values. This suggests that the feature has a minimum value for the quality of wine.
 This was not visible in the pearson correlation coefficient because the correlation coefficient is calculated over the entire dataset.
 
-\begin{figure*}
+\begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{figures/shap-summary-svr.png}
 	\caption{Summary plot of the features for SVR}
 	\label{fig:summary-plot-svr}
-\end{figure*}
+\end{figure}
 
-\begin{figure*}
+\begin{figure}
     \centering
     \includegraphics[width=\linewidth]{figures/shap-dependency-svr.png}
     \caption{Dependency plot of the features for SVR}
     \label{fig:dependency-plot-svr}
-\end{figure*}
+\end{figure}
 
 \subsubsubsection{Inprove the model}
 
@@ -277,24 +277,24 @@ Other features can be read in the same way as being positive (blue to red) or ne
 The features lower in the graph have a very small impact on the model output.
 The impact of these features is very small compared to the other features.
 
-\begin{figure*}
+\begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{figures/shap-summary-ann.png}
 	\caption{Summary plot of the features for ANN}
 	\label{fig:summary-plot-ann}
-\end{figure*}
+\end{figure}
 
 Fixed acidity, pH, sulphates and citric acid show more chaotic values and do not show a clear trend.
 This can also be seen int the dependency plot in figure \autoref{fig:dependency-plot-ann} \nameref{fig:dependency-plot-ann}.
 Where other diagrams how a clear upward or downward trend, the dependency plot for these features shows a more chaotic picture.
 This choatic picture results in a low correlation with the model output.
 
-\begin{figure*}
+\begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{figures/shap_dependency_ann.png}
 	\caption{Dependency plot of the features for ANN}
 	\label{fig:dependency-plot-ann}
-\end{figure*}
+\end{figure}
 
 \subsubsubsection{Inprove the model}
 Based on figure \ref{fig:ANN-impact-neurons-3layers} it can be concluded that the model with 15 neurons for each layer is quite well chosen. Increasing the number of neurons will certainly not give better results.
