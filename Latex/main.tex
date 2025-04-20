@@ -144,17 +144,21 @@ The results are visualized in figure \ref{fig:Reproduce-SVR-the-results}. The im
 
 \subsubsubsection{Impact of the features}
 In figure \autoref{fig:summary-plot-svr} \nameref{fig:summary-plot-svr} the impact of all features is visualized.
-From this diagram it is clear that Alcohol has the most positive impact on the model output.
+From this diagram it can be concluded that density has the most impact on the model output.
 The blue values indicate a low value of the feature and the red values indicate a high value of the feature.
-The impact on the model output is shown on the x-axis. For alcohol the blue values are on the left side of the plot and the red values are on the right side of the plot, meaning the impact is positive.
-Residual sugar has a same positive impact on the model output, but the impact is slightly smaller than for alcohol.
-density and volatile acidity have a negative impact on the model output. The blue values are on the right side of the plot and the red values are on the left side of the plot, meaning the impact is negative.
+The impact on the model output is shown on the x-axis.
+For density the red values are on the left side of the plot and the blue values are on the right side of the plot, meaning the impact is negative.
+As discussed in the dataset analysis density and alcohol are inversely correlated.
+The second most important feature is alcohol. The impact of alcohol on the model output is positive.
+This corresponds with the internal correlations found in the dataset.
+Residual sugar has a positive impact on the model output, but the impact is slightly smaller than for density and alcohol.
+Volatile acidity has a negative impact on the model output. The blue values are on the right side of the plot and the red values are on the left side of the plot, meaning the impact is negative.
 The features with a very weak correlation to the output are: chlorides, free sulfur dioxide and total sulfur dioxide. The impact of these features is very small compared to the other features.
-The SHAP values for those features are more chaotic and do not show a clear trend.
+The SHAP dependency diagrams for those features are more chaotic and do not show a clear trend.
 
 In figure \autoref{fig:dependency-plot-svr} \nameref{fig:dependency-plot-svr} the impact of the individual features are visualized.
 The dependency plot shows the impact of each feature on the model output.
-The color of the dots indicates the value \textbf{(=impact?)} of the feature, with red indicating a high value and blue indicating a low value.
+The color of the dots indicates the interaction of the feature with an other feature, with red indicating a high value for the interacting feature and blue indicating a low low value for the interacting feature.
 The y-axis shows the impact of the feature on the model output.
 
 The plot for alcohol shows that the impact of alcohol on the model output is positive.
@@ -166,7 +170,8 @@ The plot for density show that the impact of density on the model output is nega
 This means that a higher value of density leads to a lower quality of wine.
 just as with alcohol, the trend of the values is clearly visible in the plot, showing a strong negative correlation between the feature and the model output.
 
-The plot for chlorides shows that the impact of chlorides on the model output is also negative. Again this corresponds with the Pearson correlation coefficient, which shows a negative correlation between chlorides and quality.
+The plot for chlorides shows that the impact of chlorides on the model output is also negative.
+Again this corresponds with the Pearson correlation coefficient, which shows a negative correlation between chlorides and quality.
 
 The feature with the least impact on the model output is Free sulfur dioxide.
 The plot shows that the impact of Free sulfur dioxide on the model output is positive.
@@ -210,14 +215,11 @@ Based on the three evaluation criteria (correlation, RMSE and MAPE) the model co
 	\label{fig:optimized-SVR-model}
 \end{figure}
 
-
-
-
 \subsubsection{Discussion}
 %Additionally, you can include a separate discussion section in which you summarize the results, indicate possible limitations of your work, and provide suggestions for future research.
+The results of the article have been reproduced.
 
-
-The results of the article have been reproduced. The impact of the features has been investigated. And the model has been optimized. All this while the article does not seem reliable because of the incorrect naming of the data set (namely red wine instead of white wine)
+The impact of the features has been investigated and the model has been optimized.
 
 
 \subsection{Citing references}
