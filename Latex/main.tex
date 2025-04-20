@@ -69,7 +69,7 @@ The methods used for this assignment are based on the article \cite{dahal2021pre
 The impact of the features is analyzed using SHAP (SHapley Additive exPlanations) values and the Pearson correlation coefficient. Improvements on the both the SVR and ANN models are investigated and reported.
 
 \subsection{Reproduce the results}
-In order to compare the results of the article with our results, a visualization was made. Here the values of the article \cite{dahal2021prediction} are compared with our results repeatedly. Our results are reproduced repeatedly with different test and training data each time. This way we are sure that it is not a lucky shot but we get a realistic picture of how our models perform.
+In order to compare the results of the article with our results, a visualization was made. The values of the article \cite{dahal2021prediction} are compared with our results repeatedly. Our results are reproduced repeatedly with different test and training data each time. This way we are sure that it is not a lucky shot but we get a realistic picture of how our models perform.
 Also, standardization has been applied to the data features of the dataset so not to the quality column.
 
 \subsection{Impact of the features}
@@ -91,12 +91,12 @@ The dependency plot shows the impact of a single feature on the model output.
 For optimizing the hyperparameters, BayesSearch is used for SVR. For ANN, gridsearch was used to examine the impact of the hyperparameters. The optimized models will be evaluated and compared with the values from the article and with the reproduced models.
 
 \section{Experimental Results}
-This chapter, experimental results, is split into 3 parts: A short general piece, a piece on SVR and a part on ANN
+This chapter, experimental results, is split into 3 parts: A short general piece, a piece on SVR and a part on ANN.
 
 \subsection{Datasets}
 When exploiting the data it was found that the information given in the article about the data did not match the information about the data. The article indicates that the red wine dataset was used. Based on the number of rows and other metadata (averages, Median, ...) we see that the white wine dataset was used. In the rest of this article we will work with the white wine dataset.
 
-The correlation between all the columns has also been visualized in figure \ref{fig:correlation-matrix} and investigated. The following findings emerged:
+The correlation between all the columns has also been visualized in figure \autoref{fig:correlation-matrix} and investigated. The following findings emerged:
 \begin{itemize}
 	\item Alcohol has the greatest correlation with quality.
 	\item Density and residual sugar are inversely proportional, which can also be explained. Dissolved sugar increases the density.
@@ -107,7 +107,7 @@ The correlation between all the columns has also been visualized in figure \ref{
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{figures/correlation_matrix.png}
-	\caption{Correlation between the columns}
+	\caption{Correlation between the columns of the white wine dataset}
 	\label{fig:correlation-matrix}
 \end{figure}
 
@@ -149,17 +149,17 @@ The new parameters will be used to train a model 100 times. Each time with diffe
 
 \subsubsubsection{Reproduce the results}
 
-The results are visualized in figure \ref{fig:Reproduce-SVR-the-results}. The important part is how the results are compared to the test data. The correlation and the MAPE give better results than the article \cite{dahal2021prediction}. While the MSE of the reproduced model are slightly worse.
+The results are visualized in \autoref{fig:Reproduce-SVR-the-results}. The important part is how the results are compared to the test data. The correlation and the MAPE give better results than the article \cite{dahal2021prediction}. While the MSE of the reproduced model are slightly worse.
 
 \begin{figure}
 \centering
 \includegraphics[width=\linewidth]{figures/SVR_reproduce_the_results.png}
-\caption{Reproduce the SVR results}
+\caption{Comparison between the SVR model from the article (red dashed line) and the reproduced model (blue bars)}
 \label{fig:Reproduce-SVR-the-results}
 \end{figure}
 
 \subsubsubsection{Impact of the features}
-In figure \autoref{fig:summary-plot-svr} \nameref{fig:summary-plot-svr} the impact of all features is visualized.
+In \autoref{fig:summary-plot-svr} \nameref{fig:summary-plot-svr} the impact of all features is visualized.
 From this diagram it is clear that Alcohol has the most positive impact on the model output.
 The blue values indicate a low value of the feature and the red values indicate a high value of the feature.
 The impact on the model output is shown on the x-axis. For alcohol the blue values are on the left side of the plot and the red values are on the right side of the plot, meaning the impact is positive.
@@ -212,26 +212,23 @@ In \autoref{fig:Bayesian-search-for-optimal-gamma-and-cost} the best possible va
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{figures/bayesian_optimization.png}
-    \caption{Bayesian search for optimal gamma en cost}
+    \caption{Bayesian search for optimizing gamma and cost. Green indicates better hyperparameters. Blue indicates the parameters from the article.}
     \label{fig:Bayesian-search-for-optimal-gamma-and-cost}
 \end{figure}
 
 The most optimal parameters are: cost=1.51 and gamma=0.558.
-In figure \ref{fig:optimized-SVR-model} we see how the model performs compared to the values of the model of the article \cite{dahal2021prediction} (dashed line) and compared to the non-optimized model (dotted line). 
+In \autoref{fig:optimized-SVR-model} we see how the model performs compared to the values of the model of the article \cite{dahal2021prediction} (dashed line) and compared to the non-optimized model (dotted line). 
 Based on the three evaluation criteria (correlation, RMSE and MAPE) the model consistently outperforms the non-optimized model. The parameters perform significantly better based on the training data suggesting overfitting, but the results from the testing data are also (slightly) better indicating no overfitting.
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{figures/SVR_optimized_model.png}
-	\caption{Optimized SVR model}
+	\caption{An optimized SVR model (blue bars) compared to the model from the article (red dashed line) and the reproduced model (orange dotted line)}
 	\label{fig:optimized-SVR-model}
 \end{figure}
 
 
-
-
 \subsubsection{Discussion}
 %Additionally, you can include a separate discussion section in which you summarize the results, indicate possible limitations of your work, and provide suggestions for future research.
-
 
 The results of the article have been reproduced. The impact of the features has been investigated. And the model has been optimized. All this while the article does not seem reliable because of the incorrect naming of the data set (namely red wine instead of white wine)
 
@@ -270,7 +267,7 @@ It was also considered to reduce the number of hidden layers to one. The reasoni
 
 \subsubsubsection{Reproduce the results}
 
-In figure \ref{fig:ANN-reproduce-the-results} the original model is indicated by a red dashed line. 100 models (with the selected parameters) were trained and shown as blue bar charts. The average of the bar charts is shown by an orange dotted line.
+In \autoref{fig:ANN-reproduce-the-results} the original model is indicated by a red dashed line. 100 models (with the selected parameters) were trained and shown as blue bar charts. The average of the bar charts is shown by an orange dotted line.
 The R values are very similar. The MSE results are worse than those of the model from the article while the MAPE results are better than those from the article.
 The combination of a higher MSE and a lower MAPE may indicate that most forecasts are accurate, but there are some exceptions with large errors that increase the MSE.
 This must be put into perspective, because we are talking about very small differences compared to the original model. If we know that the quality has no significant figures, the differences compared to the original model are negligible.
@@ -278,7 +275,7 @@ This must be put into perspective, because we are talking about very small diffe
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{figures/ANN_reproduce_the_results.png}
-	\caption{ANN: reproduce the results}
+	\caption{An reproduced ANN model (blue bars) compared to the model from the article (red dashed line). The average of the reproduced model is also indicated with an orange dotted line.}
 	\label{fig:ANN-reproduce-the-results}
 \end{figure}
 
@@ -313,49 +310,49 @@ This choatic picture results in a low correlation with the model output.
 \end{figure}
 
 \subsubsubsection{Inprove the model}
-Based on figure \ref{fig:ANN-impact-neurons-3layers} it can be concluded that the model with 15 neurons for each layer is quite well chosen. Increasing the number of neurons will certainly not give better results.
+Based on \autoref{fig:ANN-impact-neurons-3layers} it can be concluded that the model with 15 neurons for each layer is quite well chosen. Increasing the number of neurons will certainly not give better results.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{figures/ANN_impact_neurons_3layers.png}
-	\caption{ANN impact neurons with hidden 3 layers}
+	\caption{The effect of number of neurons on an ANN model with 3 hidden layers}
 	\label{fig:ANN-impact-neurons-3layers}
 \end{figure}
 
-With one neuron the story is different, see figure \ref{fig:ANN-impact-neurons-1layer}. The model improves as the number of neurons increases with a flattening starting around 70 neurons. With these 70 neurons the impact of batch size and epochs was investigated with the aim of finding a better model.
+With one neuron the story is different, see \autoref{fig:ANN-impact-neurons-1layer}. The model improves as the number of neurons increases with a flattening starting around 70 neurons. With these 70 neurons the impact of batch size and epochs was investigated with the aim of finding a better model.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{figures/ANN_impact_neurons_1layer.png}
-	\caption{ANN impact neurons 1layer}
+	\caption{The effect of number of neurons on an ANN model with one hidden layer}
 	\label{fig:ANN-impact-neurons-1layer}
 \end{figure}
 
-Figure \ref{fig:ANN-impact-epochs-1layer} and Figure \ref{fig:ANN-impact-batchsize-1layer} show the results of a grid search for a better model around number of epochs and batch size.
+\autoref{fig:ANN-impact-epochs-1layer} and \autoref{fig:ANN-impact-batchsize-1layer} show the results of a grid search for a better model around number of epochs and batch size.
 As expected we see that we get better models at higher epochs and smaller batch sizes. For the final model epochs = 40 and batch size = 16 were chosen.
 
 
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{figures/ANN_impact_epochs_1layer.png}
-	\caption{ANN impact epochs 1layer}
+	\caption{The effect of number of epochs on an ANN model with one hidden layer}
 	\label{fig:ANN-impact-epochs-1layer}
 \end{figure}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{figures/ANN_impact_batchsize_1layer.png}
-	\caption{ANN impact batch size 1layer}
+	\caption{The effect of number of batch size on an ANN model with one hidden layer}
 	\label{fig:ANN-impact-batchsize-1layer}
 \end{figure}
 
-Figure \ref{fig:ANN-optimized-model} shows the model from the article with a red dashed line and the reproduced model with an orange dotted line. The blue bars show an optimized model with one layer (with 70 neurons). Both the R values, MSE and MAPE give better results than the reproduced model. This improvement is only minimal.
+\autoref{fig:ANN-optimized-model} shows the model from the article with a red dashed line and the reproduced model with an orange dotted line. The blue bars show an optimized model with one layer (with 70 neurons). Both the R values, MSE and MAPE give better results than the reproduced model. This improvement is only minimal.
 
 
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{figures/ANN_optimized_model.png}
-	\caption{ANN optimized model}
+	\caption{An optimized ANN model (blue bars) compared to the model from the article (red dashed line) and the reproduced model (orange dotted line)}
 	\label{fig:ANN-optimized-model}
 \end{figure}
 
