@@ -52,7 +52,7 @@
 
 \section{Brief Introduction}
 The assignment is based on the article \cite{dahal2021prediction} and focuses on the reproduction of the article results.
-The reproduct is limited to only the Support Vector Regression (SVR) and Artificial Neural Network (ANN) models.
+The reproduction is limited to the Support Vector Regression (SVR) and Artificial Neural Network (ANN) models.
 The Ridge Regression (RR) and Gradient Boosting Regression models are not discussed in this report.
 The goal of the assignment is to predict the quality of wine based on its physical and chemical properties and understand the methods used to generate the predictions.
 The dataset will be analyzed to find the features that most influence the quality of wine and suggestions are provided to improve the hyperparameters of the model for best results.
@@ -69,7 +69,10 @@ The methods used for this assignment are based on the article \cite{dahal2021pre
 The impact of the features is analyzed using SHAP (SHapley Additive exPlanations) values and the Pearson correlation coefficient. Improvements on the both the SVR and ANN models are investigated and reported.
 
 \subsection{Reproduce the results}
-In order to compare the results of the article with our results, a visualization was made. The values of the article \cite{dahal2021prediction} are compared with our results repeatedly. Our results are reproduced repeatedly with different test and training data each time. This way we are sure that it is not a lucky shot but we get a realistic picture of how our models perform.
+In order to compare the results of the article with our results, a visualization of the performance metrics was made.
+The values of the article \cite{dahal2021prediction} are compared with our results repeatedly.
+Our results are reproduced repeatedly with different test and training data each time.
+This way we are sure that it is not a lucky shot but we get a realistic picture of how our models perform.
 Also, standardization has been applied to the data features of the dataset so not to the quality column.
 
 \subsection{Impact of the features}
@@ -94,9 +97,12 @@ For optimizing the hyperparameters, BayesSearch is used for SVR. For ANN, gridse
 This chapter, experimental results, is split into 3 parts: A short general piece, a piece on SVR and a part on ANN.
 
 \subsection{Datasets}
-When exploiting the data it was found that the information given in the article about the data did not match the information about the data. The article indicates that the red wine dataset was used. Based on the number of rows and other metadata (averages, Median, ...) we see that the white wine dataset was used. In the rest of this article we will work with the white wine dataset.
+When exploring the data it was found that the information given in the article about the data did not match the information about the data.
+The article indicates that the red wine dataset was used.
+Based on the number of rows and other metadata (averages, Median, ...) we see that the white wine dataset was used.
+In the rest of this report we will work with the white wine dataset.
 
-The correlation between all the columns has also been visualized in figure \autoref{fig:correlation-matrix} and investigated. The following findings emerged:
+The correlation between all the features has also been visualized in figure \autoref{fig:correlation-matrix} and investigated. The following findings emerged:
 \begin{itemize}
 	\item Alcohol has the greatest correlation with quality.
 	\item Density and residual sugar are inversely proportional, which can also be explained. Dissolved sugar increases the density.
@@ -107,10 +113,9 @@ The correlation between all the columns has also been visualized in figure \auto
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{figures/correlation_matrix.png}
-	\caption{Correlation between the columns of the white wine dataset}
+	\caption{Correlation between the features of the white wine dataset}
 	\label{fig:correlation-matrix}
 \end{figure}
-
 
 \subsection{SVR}
 
@@ -159,18 +164,20 @@ The results are visualized in \autoref{fig:Reproduce-SVR-the-results}. The impor
 \end{figure}
 
 \subsubsubsection{Impact of the features}
-In \autoref{fig:summary-plot-svr} \nameref{fig:summary-plot-svr} the impact of all features is visualized.
-From this diagram it is clear that Alcohol has the most positive impact on the model output.
+In \autoref{fig:summary-plot-svr} the impact of all features is visualized.
+From this diagram it is clear that density has the most impact on the model output.
 The blue values indicate a low value of the feature and the red values indicate a high value of the feature.
-The impact on the model output is shown on the x-axis. For alcohol the blue values are on the left side of the plot and the red values are on the right side of the plot, meaning the impact is positive.
-Residual sugar has a same positive impact on the model output, but the impact is slightly smaller than for alcohol.
-density and volatile acidity have a negative impact on the model output. The blue values are on the right side of the plot and the red values are on the left side of the plot, meaning the impact is negative.
-The features with a very weak correlation to the output are: chlorides, free sulfur dioxide and total sulfur dioxide. The impact of these features is very small compared to the other features.
+The impact on the model output is shown on the x-axis.
+For alcohol the red values are on the left side of the plot and the blue values are on the right side of the plot, meaning the impact is negative.
+Residual sugar and alcohol have a positive impact on the model output, but the impact is slightly smaller than for density.
+Volatile acidity has a negative impact on the model output.
+The features with a very weak correlation to the output are: chlorides, sulphates and fixed acidity.
+The impact of these features is very small compared to the other features.
 The SHAP values for those features are more chaotic and do not show a clear trend.
 
-In figure \autoref{fig:dependency-plot-svr} \nameref{fig:dependency-plot-svr} the impact of the individual features are visualized.
+In figure \autoref{fig:dependency-plot-svr} the impact of the individual features are visualized.
 The dependency plot shows the impact of each feature on the model output.
-The color of the dots indicates the value \textbf{(=impact?)} of the feature, with red indicating a high value and blue indicating a low value.
+The color of the dots indicates the value of the interacting feature, with red indicating a high value and blue indicating a low value.
 The y-axis shows the impact of the feature on the model output.
 
 The plot for alcohol shows that the impact of alcohol on the model output is positive.
@@ -180,15 +187,13 @@ This is also confirmed by the Pearson correlation coefficient, which shows a pos
 
 The plot for density show that the impact of density on the model output is negative.
 This means that a higher value of density leads to a lower quality of wine.
-just as with alcohol, the trend of the values is clearly visible in the plot, showing a strong negative correlation between the feature and the model output.
+Just as with alcohol, the trend of the values is clearly visible in the plot, showing a strong negative correlation between the feature and the model output.
 
-The plot for chlorides shows that the impact of chlorides on the model output is also negative. Again this corresponds with the Pearson correlation coefficient, which shows a negative correlation between chlorides and quality.
-
-The feature with the least impact on the model output is Free sulfur dioxide.
-The plot shows that the impact of Free sulfur dioxide on the model output is positive.
-This means that a higher value of Free sulfur dioxide leads to a higher quality of wine.
+One of the feature with the least impact on the model output is fixed acidity.
+The plot shows that the impact of fixed acidity on the model output is positive.
+This means that a higher value of fixed acidity leads to a higher quality of wine.
 However, the trend of the values is not clearly visible in the plot, showing a weak correlation between the feature and the model output.
-This is also confirmed by the Pearson correlation coefficient, which shows a weak positive correlation between Free sulfur dioxide and quality.
+This is also confirmed by the Pearson correlation coefficient, which shows a weak positive correlation between fixed acidity and quality.
 Notable is that Free sulfur dioxide has a strong positive trend for the lower values. This suggests that the feature has a minimum value for the quality of wine.
 This was not visible in the pearson correlation coefficient because the correlation coefficient is calculated over the entire dataset.
 
@@ -206,7 +211,7 @@ This was not visible in the pearson correlation coefficient because the correlat
     \label{fig:dependency-plot-svr}
 \end{figure}
 
-\subsubsubsection{Inprove the model}
+\subsubsubsection{Improve the model}
 
 In \autoref{fig:Bayesian-search-for-optimal-gamma-and-cost} the best possible values for gamma and cost are examined. The non-optimized model (the model with the parameters as indicated in the article \cite{dahal2021prediction} ) is visualized by a blue sphere.
 \begin{figure}
@@ -228,13 +233,13 @@ Based on the three evaluation criteria (correlation, RMSE and MAPE) the model co
 
 
 \subsubsection{Discussion}
-%Additionally, you can include a separate discussion section in which you summarize the results, indicate possible limitations of your work, and provide suggestions for future research.
-
-The results of the article have been reproduced. The impact of the features has been investigated. And the model has been optimized. All this while the article does not seem reliable because of the incorrect naming of the data set (namely red wine instead of white wine)
-
-
-\subsection{Citing references}
-%%%LaTeX manages the citations for you. You simply have to add the bibtex entry for the reference in the references.bib file and you can use the citation in the paper \cite{langley00}. You can also cite multiple references in one command \cite{DudaHart2nd,Newell81,kearns89}. The bibtex entries for a paper can be obtained in websites such as google scholar or dblp.
+The results of the article have been reproduced and are close to the reported performance based on the metrics.
+The performance was not the same, but this can be a result of different implementations used or different library versions.
+The impact of the features has been investigated. The results are in line with the pearson correlation coefficient.
+There is also some insights gained from the dependency plots which show non-linear relationships.
+Further research can be done by excluding features with less impact on the model output.
+All this while the article does not seem fully reliable because of the incorrect naming of the data set (namely red wine instead of white wine).
+Not having access to the original code used to generate the results makes it difficult to check the validity of the hyperparameters.
 
 \subsection{ANN}
 
@@ -256,9 +261,7 @@ In contrast the DeepExplainer is a model-specific explainer that can be used to 
 The performance of the DeepExplainer is far better compared to the KernelExplainer and seems to have a similar output as the KernelExplainer.
 The KernelExplainer is prioritized because it is model-agnostic and as such eliminates differences in result due to different Explainer implementations.
 
-
-
-\subsubsubsection{Inprove the model}
+\subsubsubsection{Improve the model}
 In a perfect world, all hyperparameters and all possible models would be tested. However, due to limited time and access to resources, it was decided to look at the number of hidden layers and the number of neurons.
 Gridsearch will be used to see if the model can be optimized by adjusting the number of neurons in the hidden layers.
 It was also considered to reduce the number of hidden layers to one. The reasoning behind this is that the data is not that complex and that the complexity of the three layers would be unnecessary. With one hidden layer, the impact of the number of neurons is also investigated using Gridsearch. And once an optimum has been found, the impact of batch size and epochs is also examined.
@@ -281,7 +284,7 @@ This must be put into perspective, because we are talking about very small diffe
 
 
 \subsubsubsection{Impact of the features}
-The summary plot for the ANN model is shown in figure \autoref{fig:summary-plot-ann} \nameref{fig:summary-plot-ann}.
+The summary plot for the ANN model is shown in figure \autoref{fig:summary-plot-ann}.
 In this summary plot it is shown that the most important feature is the alcohol as this one is shown on top.
 The impact of the alcohol is positive, which means that a higher value of alcohol leads to a higher quality of wine.
 Next are residual sugar and density. The impact of residual sugar is positive, while the impact of density is negative.
@@ -298,7 +301,7 @@ The impact of these features is very small compared to the other features.
 \end{figure}
 
 Fixed acidity, pH, sulphates and citric acid show more chaotic values and do not show a clear trend.
-This can also be seen int the dependency plot in figure \autoref{fig:dependency-plot-ann} \nameref{fig:dependency-plot-ann}.
+This can also be seen int the dependency plot in figure \autoref{fig:dependency-plot-ann}.
 Where other diagrams how a clear upward or downward trend, the dependency plot for these features shows a more chaotic picture.
 This choatic picture results in a low correlation with the model output.
 
@@ -319,7 +322,9 @@ Based on \autoref{fig:ANN-impact-neurons-3layers} it can be concluded that the m
 	\label{fig:ANN-impact-neurons-3layers}
 \end{figure}
 
-With one neuron the story is different, see \autoref{fig:ANN-impact-neurons-1layer}. The model improves as the number of neurons increases with a flattening starting around 70 neurons. With these 70 neurons the impact of batch size and epochs was investigated with the aim of finding a better model.
+With one hidden layer the story is different, see \autoref{fig:ANN-impact-neurons-1layer}.
+The model improves as the number of neurons increases with a flattening starting around 70 neurons.
+With these 70 neurons the impact of batch size and epochs was investigated with the aim of finding a better model.
 
 \begin{figure}
 	\centering
@@ -356,20 +361,16 @@ As expected we see that we get better models at higher epochs and smaller batch 
 	\label{fig:ANN-optimized-model}
 \end{figure}
 
-
-
-
 \subsubsection{Discussion}
+The article has been reproduced and the results are close to the reported performance based on the metrics.
+The performance was not the same, but this can be a result of different implementations used or different library versions.
+The impact of the features has been investigated. The results are in line with the pearson correlation coefficient.
+When searching for improvements on the model, it was found that the number of neurons in the hidden layers had a significant impact on the model performance.
+Setting the number of neurons to 70 in the hidden layer with one hidden layer gives a better model than the model with three hidden layers and 15 neurons.
+Setting the number of epochs to 40 and the batch size to 16 gives a better model than the model in the article.
 
-%nog aan te vullen!
-
-
-\subsubsection{Citing references}
-
-
+\section{Citing references}
 \bibliography{references}
 \bibliographystyle{icml2021}
 
-
 \end{document}
-
