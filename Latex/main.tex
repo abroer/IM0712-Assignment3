@@ -226,99 +226,103 @@ The results of the article have been reproduced. The impact of the features has 
 \subsection{ANN}
 
 \subsubsection{Datasets}
-In the article it is stated that the train-validation-test ratio is 60-20-20. We have also maintained this ratio for reproducing and optimizing the model.
+In the article \cite{dahal2021prediction} it is stated that the train-validation-test ratio is 60-20-20. This ratio has been maintained for reproducing and optimizing the model.
 
 \subsubsection{Implementation Details}
 
 \subsubsubsection{Reproduce the results}
-The article mentions the following parameters: 1 input layer, 3 hidden layers (each with 15 neurons) and one output layer with the Adam optimizer.
-As activation function relu was chosen and the mean squared error as loss to optimize.
-How the training data is chosen is unknown, so the split between training and test data is performed multiple times. In this way, there is a realistic picture of the models that generate these parameters.
+The article \cite{dahal2021prediction} mentions the following parameters: 1 input layer, 3 hidden layers (each with 15 neurons) and one output layer with the Adam optimizer.
+As activation function relu was chosen and the mean squared error as loss to optimize. The following parameters were not specified so they were filled in with the following values: number of epochs = 50 and batch size = 16.
+How the training data is chosen is also unknown, so the split between training and test data is performed multiple times. In this way, there is a realistic picture of the models that generate these parameters. 
 
 \subsubsubsection{Impact of the features}
 The analysis of the impact of the feature is done in the same way as with the SVR model.
-We need to be able to compare the results of the feature impact analysis, so we will use the same KernelExplainer as with the SVR model.
+We need to be able to compare the results of the feature impact analysis, so the same KernelExplainer is used as with the SVR model.
 The KernelExplainer is a model-agnostic explainer that can be used to explain the output of any machine learning model.
 In contrast the DeepExplainer is a model-specific explainer that can be used to explain the output of a deep learning model.
 The performance of the DeepExplainer is far better compared to the KernelExplainer and seems to have a similar output as the KernelExplainer.
-Still we prioritize the KernelExplainer because it is model-agnostic and as such eliminates differences in result due to different Explainer implementations.
+The KernelExplainer is prioritized because it is model-agnostic and as such eliminates differences in result due to different Explainer implementations.
 
 
 
 \subsubsubsection{Inprove the model}
-Due to time constraints, we will limit the number of tests. Gridsearch will be used to see if the model can be optimized by adjusting the number of neurons in the hidden layers.
-It was also considered to reduce the number of hidden layers to one. The reasoning behind this is that the data is not that complex and that the complexity of the three layers would be unnecessary. With one hidden layer, the impact of the number of neurons is also considered. And once an optimum has been found, the impact of batch size and epochs is also examined.
+In a perfect world, all hyperparameters and all possible models would be tested. However, due to limited time and access to resources, it was decided to look at the number of hidden layers and the number of neurons.
+Gridsearch will be used to see if the model can be optimized by adjusting the number of neurons in the hidden layers.
+It was also considered to reduce the number of hidden layers to one. The reasoning behind this is that the data is not that complex and that the complexity of the three layers would be unnecessary. With one hidden layer, the impact of the number of neurons is also investigated using Gridsearch. And once an optimum has been found, the impact of batch size and epochs is also examined.
 
 \subsubsection{Results}
 
 \subsubsubsection{Reproduce the results}
 
-In figure \ref{fig:ANN-reproduce-the-results} the original model is indicated by a red dashed line. With the chosen parameters 100 models were trained and shown as blue bar charts. The average of the bar charts is shown by an orange dotted line.
+In figure \ref{fig:ANN-reproduce-the-results} the original model is indicated by a red dashed line. 100 models (with the selected parameters) were trained and shown as blue bar charts. The average of the bar charts is shown by an orange dotted line.
 The R values are very similar. The MSE results are worse than those of the model from the article while the MAPE results are better than those from the article.
 The combination of a higher MSE and a lower MAPE may indicate that most forecasts are accurate, but there are some exceptions with large errors that increase the MSE.
 This must be put into perspective, because we are talking about very small differences compared to the original model. If we know that the quality has no significant figures, the differences compared to the original model are negligible.
 
-\begin{figure*}
+\begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{figures/ANN_reproduce_the_results.png}
 	\caption{ANN: reproduce the results}
 	\label{fig:ANN-reproduce-the-results}
-\end{figure*}
+\end{figure}
 
 
 \subsubsubsection{Impact of the features}
 tbc
 
 \subsubsubsection{Inprove the model}
-Based on figure \ref{ANN-impact-neurons-3layers} it can be concluded that the model with 15 neurons for each layer is quite well chosen. Increasing the number of neurons will certainly not give better results.
+Based on figure \ref{fig:ANN-impact-neurons-3layers} it can be concluded that the model with 15 neurons for each layer is quite well chosen. Increasing the number of neurons will certainly not give better results.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{figures/ANN_impact_neurons_3layers.png}
-	\caption{ANN impact neurons 3layers}
+	\caption{ANN impact neurons with hidden 3 layers}
 	\label{fig:ANN-impact-neurons-3layers}
 \end{figure}
 
-With one neuron the story is different, see figure \ref{ANN-impact-neurons-1layer}. The model improves as the number of neurons increases with a flattening starting around 70 neurons. With these 70 neurons the impact of batch size and epochs was investigated with the aim of finding a better model.
-As expected we see that we get better models at higher epochs and smaller batch sizes. For the final model epochs = 40 and batch size = 16 were chosen.
+With one neuron the story is different, see figure \ref{fig:ANN-impact-neurons-1layer}. The model improves as the number of neurons increases with a flattening starting around 70 neurons. With these 70 neurons the impact of batch size and epochs was investigated with the aim of finding a better model.
 
-\begin{figure*}
+\begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{figures/ANN_impact_neurons_1layer.png}
 	\caption{ANN impact neurons 1layer}
 	\label{fig:ANN-impact-neurons-1layer}
-\end{figure*}
+\end{figure}
 
-\begin{figure*}
+Figure \ref{fig:ANN-impact-epochs-1layer} and Figure \ref{fig:ANN-impact-batchsize-1layer} show the results of a grid search for a better model around number of epochs and batch size.
+As expected we see that we get better models at higher epochs and smaller batch sizes. For the final model epochs = 40 and batch size = 16 were chosen.
+
+
+\begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{figures/ANN_impact_epochs_1layer.png}
 	\caption{ANN impact epochs 1layer}
 	\label{fig:ANN-impact-epochs-1layer}
-\end{figure*}
+\end{figure}
 
-Figure \ref{fig:ANN-optimized-model} shows the model from the article with a red dashed line and the reproduced model with an orange dotted line. The blue bars show an optimized model with one layer (with 70 neurons). Both the R values, MSE and MAPE give better results than the reproduced model. This improvement is only minimal.
-
-\begin{figure*}
+\begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{figures/ANN_impact_batchsize_1layer.png}
 	\caption{ANN impact batch size 1layer}
 	\label{fig:ANN-impact-batchsize-1layer}
-\end{figure*}
+\end{figure}
+
+Figure \ref{fig:ANN-optimized-model} shows the model from the article with a red dashed line and the reproduced model with an orange dotted line. The blue bars show an optimized model with one layer (with 70 neurons). Both the R values, MSE and MAPE give better results than the reproduced model. This improvement is only minimal.
 
 
-\begin{figure*}
+\begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{figures/ANN_optimized_model.png}
 	\caption{ANN optimized model}
 	\label{fig:ANN-optimized-model}
-\end{figure*}
+\end{figure}
 
 
 
 
 \subsubsection{Discussion}
 
-
+%nog aan te vullen!
 
 
 \subsubsection{Citing references}
