@@ -88,13 +88,29 @@ The summary plot shows the impact of all features on the model output ordered fr
 The dependency plot shows the impact of a single feature on the model output.
 
 \subsection{Improve the model}
-For optimizing the hyperparameters, BayesSearch is used for SVR. For ANN, gridsearch was used to examine the impact of the hyperparameters.
+For optimizing the hyperparameters, BayesSearch is used for SVR. For ANN, gridsearch was used to examine the impact of the hyperparameters. The optimized models will be evaluated and compared with the values from the article and with the reproduced models.
 
 \section{Experimental Results}
 This chapter, experimental results, is split into 3 parts: A short general piece, a piece on SVR and a part on ANN
 
 \subsection{Datasets}
 When exploiting the data it was found that the information given in the article about the data did not match the information about the data. The article indicates that the red wine dataset was used. Based on the number of rows and other metadata (averages, Median, ...) we see that the white wine dataset was used. In the rest of this article we will work with the white wine dataset.
+
+The correlation between all the columns has also been visualized in figure \ref{fig:correlation-matrix} and investigated. The following findings emerged:
+\begin{itemize}
+	\item Alcohol has the greatest correlation with quality.
+	\item Density and residual sugar are inversely proportional, which can also be explained. Dissolved sugar increases the density.
+	\item Density and alcohol have a directly proportional relationship. This can also be explained. Alcohol is lighter than water, more alcohol makes the liquid less dense.
+	\item Residual sugar and alcohol are inversely proportional. This can be explained by the fact that the sugar is converted into alcohol. The more residual sugar is left, the less alcohol will have been made.
+\end{itemize}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{figures/correlation_matrix.png}
+	\caption{Correlation between the columns}
+	\label{fig:correlation-matrix}
+\end{figure}
+
 
 \subsection{SVR}
 
