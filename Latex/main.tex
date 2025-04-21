@@ -320,7 +320,7 @@ This choatic picture results in a low correlation with the model output.
 	\label{fig:dependency-plot-ann}
 \end{figure}
 
-\subsubsubsection{Inprove the model}
+\subsubsubsection{Improve the model}
 Based on \autoref{fig:ANN-impact-neurons-3layers} it can be concluded that the model with 15 neurons for each layer is quite well chosen. Increasing the number of neurons will certainly not give better results.
 
 \begin{figure}
@@ -343,14 +343,6 @@ With these 70 neurons the impact of batch size and epochs was investigated with 
 
 \autoref{fig:ANN-impact-epochs-1layer} and \autoref{fig:ANN-impact-batchsize-1layer} show the results of a grid search for a better model around number of epochs and batch size.
 As expected we see that we get better models at higher epochs and smaller batch sizes. For the final model epochs = 40 and batch size = 16 were chosen.
-
-
-\begin{figure}
-	\centering
-	\includegraphics[width=\linewidth]{figures/ANN_impact_epochs_1layer.png}
-	\caption{The effect of number of epochs on an ANN model with one hidden layer}
-	\label{fig:ANN-impact-epochs-1layer}
-\end{figure}
 
 \begin{figure}
 	\centering
