@@ -102,12 +102,12 @@ For this report an ensemble model is created by combining the SVR and ANN models
 The ensemble model is compared with the individual models to see if the ensemble model performs better than the individual models.
 
 \section{Experimental Results}
-This chapter, experimental results, is split into 3 parts: A short general piece, a piece on SVR and a part on ANN.
+This chapter on experimental results is divided into four sections: a brief overview, an analysis of SVR and ANN, and a part on the ensemble model.
 
 \subsection{Datasets}
 When exploring the data it was found that the information given in the article about the data did not match the information about the data.
 The article indicates that the red wine dataset was used.
-Based on the number of rows and other metadata (averages, Median, ...) we see that the white wine dataset was used.
+Based on the number of rows and the statistics (mean, std, min, max, median) we see that the white wine dataset was used.
 In the rest of this report we will work with the white wine dataset.
 
 The correlation between all the features has also been visualized in figure \autoref{fig:correlation-matrix} and investigated. The following findings emerged:
@@ -190,7 +190,7 @@ The y-axis shows the impact of the feature on the model output.
 
 The plot for alcohol shows that the impact of alcohol on the model output is positive.
 This means that a higher value of alcohol leads to a higher quality of wine.
-The trend of the values is clearly visible in the plot, showing a positive correlation between the feature and the model output. %naam plot toevoegen
+The trend of the values is clearly visible in the plot, showing a positive correlation between the feature and the model output.
 This is also confirmed by the Pearson correlation coefficient, which shows a positive correlation between alcohol and quality.
 
 The plot for density show that the impact of density on the model output is negative.
@@ -374,7 +374,6 @@ The performance was not the same, but this can be a result of different implemen
 The impact of the features has been investigated. The results are in line with the pearson correlation coefficient.
 When searching for improvements on the model, it was found that the number of neurons in the hidden layers had a significant impact on the model performance.
 Setting the number of neurons to 70 in the hidden layer with one hidden layer gives a better model than the model with three hidden layers and 15 neurons.
-Setting the number of epochs to 40 and the batch size to 16 gives a better model than the model in the article.
 
 \subsection{Ensemble model}
 
