@@ -346,6 +346,13 @@ As expected we see that we get better models at higher epochs and smaller batch 
 
 \begin{figure}
 	\centering
+	\includegraphics[width=\linewidth]{figures/ANN_impact_epochs_1layer.png}
+	\caption{The effect of number of epochs on an ANN model with one hidden layer}
+	\label{fig:ANN-impact-epochs-1layer}
+\end{figure}
+
+\begin{figure}
+	\centering
 	\includegraphics[width=\linewidth]{figures/ANN_impact_batchsize_1layer.png}
 	\caption{The effect of number of batch size on an ANN model with one hidden layer}
 	\label{fig:ANN-impact-batchsize-1layer}
@@ -371,7 +378,7 @@ Setting the number of epochs to 40 and the batch size to 16 gives a better model
 
 \subsection{Ensemble model}
 
-\subsubssection{Datasets}
+\subsubsection{Datasets}
 For the ensemble model, the same dataset is used as for the individual models. Again using the white wine dataset.
 The data is split into training, testing and validation data with a ratio of 60-20-20.
 The same training and testing data is used to train both the SVR and ANN models.
