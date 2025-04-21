@@ -62,6 +62,7 @@ The research questions discussed in this report are:
     \item Reproduce the results of the article \cite{dahal2021prediction} using the same dataset and models.
     \item Analyze the dataset to find the features that most influence the quality of wine.
     \item Provide suggestions to improve the hyperparameters of the model for best results.
+	\item Explore the improvements that an ensemble model can bring.
 \end{enumerate}
 
 \section{Methods}
@@ -92,6 +93,13 @@ The dependency plot shows the impact of a single feature on the model output.
 
 \subsection{Improve the model}
 For optimizing the hyperparameters, BayesSearch is used for SVR. For ANN, gridsearch was used to examine the impact of the hyperparameters. The optimized models will be evaluated and compared with the values from the article and with the reproduced models.
+
+\subsection{Ensemble model}
+The article \cite{dahal2021prediction} also mentions the use of ensemble models.
+The ensemble model is a combination of multiple models to improve the performance of the model.
+Specifically, the article mentions the use of Gradient Boosting Regression (GBR) model as ensemble model.
+For this report an ensemble model is created by combining the SVR and ANN models, by averaging the predictions.
+The ensemble model is compared with the individual models to see if the ensemble model performs better than the individual models.
 
 \section{Experimental Results}
 This chapter, experimental results, is split into 3 parts: A short general piece, a piece on SVR and a part on ANN.
@@ -368,6 +376,42 @@ The impact of the features has been investigated. The results are in line with t
 When searching for improvements on the model, it was found that the number of neurons in the hidden layers had a significant impact on the model performance.
 Setting the number of neurons to 70 in the hidden layer with one hidden layer gives a better model than the model with three hidden layers and 15 neurons.
 Setting the number of epochs to 40 and the batch size to 16 gives a better model than the model in the article.
+
+\subsection{Ensemble model}
+
+\subsubssection{Datasets}
+For the ensemble model, the same dataset is used as for the individual models. Again using the white wine dataset.
+The data is split into training, testing and validation data with a ratio of 60-20-20.
+The same training and testing data is used to train both the SVR and ANN models.
+
+\subsubsection{Implementation Details}
+The ensemble model is created by combining the scilearn SVR model and the keras/tensorflow Sequential ANN model.
+These models are not compatible, so the scikit facilities for combining and training two models can not be used.
+Each model is trained separately using the same train and test data. The keras/tensorflow model uses also the validation data.
+The predictions of both models are combined by averaging the predictions.
+To ensure that the model performance is affected by the provided training set, the training, testing and validation data is split multiple times.
+
+\subsubsection{Results}
+in figure \autoref{fig:ensemble-model} the ensemble model is compared with the individual models.
+The individual model results are shown as a red dashed line for the article results,
+an orange dotted line for the reproduced SVR model and a purple dotted line for the ANN model.
+As expected the results for the ensemble model are between the results of the individual models.
+
+\subsubsubsection{Discussion}
+The ensemble model can be usefull to combine the strengths of both models.
+But the implemented ensemble model with averaging the predictions does not show a significant improvement compared to the individual models.
+It can be usesfull to eliminate extreme values for one of the models.
+Further research can be done to find performance difference between the individual models on subsets of the data.
+Then an ensemble model could benefit from those differences.
+For example, if one model performs better for low quality wines and the other better for high quality wines, the ensemble model could be trained to use the best model for each subset of the data.
+In this report no such observations were made.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{figures/ensemble_model_results.png}
+	\caption{An ensemble model (blue bars) compared to the SVR model (red dashed line) and the ANN model (orange dotted line)}
+	\label{fig:ensemble-model}
+\end{figure}
 
 \section{Citing references}
 \bibliography{references}
